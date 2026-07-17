@@ -1,6 +1,6 @@
-# LINE OA VNC Send
+# LINE OA VNC Auth
 
-安全地透過 **LINE Official Account Manager** 發送訊息：當遠端瀏覽器尚未登入時，提供使用者一個暫時、受密碼保護的 VNC/noVNC 畫面，讓使用者自行完成 LINE Business ID 登入與 MFA；登入後再確認指定對話、發送已核准文字並驗證外發訊息泡泡。
+安全地透過 **LINE Official Account Manager** 完成登入與 session 驗證：當遠端瀏覽器尚未登入時，提供使用者一個暫時、受密碼保護的 VNC/noVNC 畫面，讓使用者自行完成 LINE Business ID 登入與 MFA；登入後驗證 OA session，並可在使用者已核准時協助執行單次訊息操作。
 
 > **安全界線：** 使用者只能在遠端瀏覽器中輸入帳密、MFA、QR 或恢復碼。請勿在聊天、終端機命令、截圖或日誌中要求、貼上或保存這些敏感資訊。
 
@@ -54,16 +54,16 @@ command -v chromium Xvfb x11vnc websockify cloudflared xwd xdotool
 
 ## 搭配的 Skill
 
-本 Skill **不取代**日常的 LINE OA 管理能力；它負責「尚未登入或 session 已失效時」的受控登入與單次訊息發送 bootstrap。
+本 Skill **不取代**日常的 LINE OA 管理能力；它負責「尚未登入或 session 已失效時」的受控登入、MFA／QR 驗證與 session bootstrap。
 
 請搭配使用 Hermes 內建的 `line-oa` Skill：
 
 | 情境 | 應使用的 Skill |
 | --- | --- |
 | 已有可用的 LINE OA 登入 session；列出未讀、查看對話、回覆、管理 Notes／Tags 或切換 OA 帳號 | `line-oa` |
-| 需要使用者親自在隔離瀏覽器完成 LINE Business ID、MFA 或 QR 登入，再傳送經核准的訊息 | `line-oa-vnc-send` |
+| 需要使用者親自在隔離瀏覽器完成 LINE Business ID、MFA 或 QR 登入，再傳送經核准的訊息 | `line-oa-vnc-auth` |
 
-典型順序是先使用 `line-oa-vnc-send` 建立並驗證登入 session；在需要較完整的日常對話管理時，改由 `line-oa` 執行。兩者都必須從設定取得 OA chat URL，並在實際 UI 中確認目前 OA 帳號與收件人。
+典型順序是先使用 `line-oa-vnc-auth` 建立並驗證登入 session；在需要較完整的日常對話管理時，改由 `line-oa` 執行。兩者都必須從設定取得 OA chat URL，並在實際 UI 中確認目前 OA 帳號與收件人。
 
 ## 安全注意事項
 

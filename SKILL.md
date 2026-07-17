@@ -1,7 +1,7 @@
 ---
-name: line-oa-vnc-send
-description: Use when sending a LINE Official Account message needs a user-operated temporary VNC/noVNC login session, followed by verified chat delivery and secure teardown.
-version: 1.0.2
+name: line-oa-vnc-auth
+description: Use when LINE Official Account access requires a user-operated temporary VNC/noVNC login, MFA/QR completion, session verification, and secure teardown.
+version: 1.0.3
 author: Hermes Agent
 license: MIT
 metadata:
@@ -10,7 +10,7 @@ metadata:
     related_skills: [secure-remote-browser-access, line-oa]
 ---
 
-# LINE OA：透過暫時 VNC 登入並發送訊息
+# LINE OA：透過暫時 VNC 驗證登入
 
 ## Overview
 
