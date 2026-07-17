@@ -52,6 +52,19 @@ command -v chromium Xvfb x11vnc websockify cloudflared xwd xdotool
 
 完整、可執行的步驟與例外處理請見 [`SKILL.md`](SKILL.md)。
 
+## 搭配的 Skill
+
+本 Skill **不取代**日常的 LINE OA 管理能力；它負責「尚未登入或 session 已失效時」的受控登入與單次訊息發送 bootstrap。
+
+請搭配使用 Hermes 內建的 `line-oa` Skill：
+
+| 情境 | 應使用的 Skill |
+| --- | --- |
+| 已有可用的 LINE OA 登入 session；列出未讀、查看對話、回覆、管理 Notes／Tags 或切換 OA 帳號 | `line-oa` |
+| 需要使用者親自在隔離瀏覽器完成 LINE Business ID、MFA 或 QR 登入，再傳送經核准的訊息 | `line-oa-vnc-send` |
+
+典型順序是先使用 `line-oa-vnc-send` 建立並驗證登入 session；在需要較完整的日常對話管理時，改由 `line-oa` 執行。兩者都必須從設定取得 OA chat URL，並在實際 UI 中確認目前 OA 帳號與收件人。
+
 ## 安全注意事項
 
 - Cloudflare Quick Tunnel 是公開網址，**不是**安全控制；必須使用高熵、短效 VNC 密碼。

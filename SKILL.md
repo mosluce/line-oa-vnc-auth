@@ -1,7 +1,7 @@
 ---
 name: line-oa-vnc-send
 description: Use when sending a LINE Official Account message needs a user-operated temporary VNC/noVNC login session, followed by verified chat delivery and secure teardown.
-version: 1.0.1
+version: 1.0.2
 author: Hermes Agent
 license: MIT
 metadata:
